@@ -24,7 +24,7 @@ const products = [
     name: 'Paws de Calabaza',
     description: 'Ricos en fibra y sabor otoñal.',
     price: '$15.000 COP',
-    image: '/images/pumpkin-paws.jpg',
+    image: '/images/pumpkin-paws.webp',
   },
   {
     id: 4,
