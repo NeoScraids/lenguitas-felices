@@ -17,9 +17,31 @@ const ContactForm: React.FC = () => {
     }
     setError('');
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 1200));
+    
+    // Check if Netlify Forms is enabled
+    const form = e.target as HTMLFormElement;
+    const isNetlifyFormsEnabled = process.env.REACT_APP_NETLIFY_FORMS === 'true';
+    
+    if (isNetlifyFormsEnabled) {
+      try {
+        // Submit to Netlify Forms
+        const formData = new FormData(form);
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData as any).toString(),
+        });
+        setSubmitted(true);
+      } catch (err) {
+        setError('Error al enviar el formulario. Intenta nuevamente.');
+      }
+    } else {
+      // Simulate form submission for demo
+      await new Promise((res) => setTimeout(res, 1200));
+      setSubmitted(true);
+    }
+    
     setLoading(false);
-    setSubmitted(true);
   };
 
   return (
@@ -65,11 +87,25 @@ const ContactForm: React.FC = () => {
               <p className="text-warm-700 mt-2 text-sm">Te responderemos muy pronto.</p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              {/* Hidden fields for Netlify Forms */}
+              <input type="hidden" name="form-name" value="contact" />
+              <div style={{ display: 'none' }}>
+                <input name="bot-field" />
+              </div>
+              
               <div>
                 <label className="block text-sm font-medium text-warm-800 mb-1">Nombre</label>
                 <input
                   type="text"
+                  name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
@@ -81,6 +117,7 @@ const ContactForm: React.FC = () => {
                 <label className="block text-sm font-medium text-warm-800 mb-1">Email</label>
                 <input
                   type="email"
+                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
@@ -91,6 +128,7 @@ const ContactForm: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-warm-800 mb-1">Mensaje</label>
                 <textarea
+                  name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition resize-none"

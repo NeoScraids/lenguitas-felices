@@ -136,20 +136,36 @@ Cada componente está diseñado para ser:
 
 ## 🚀 Despliegue
 
+### GitHub Pages (Actual)
 El sitio está configurado para desplegarse automáticamente en GitHub Pages:
 
 1. **Build automático**: Los cambios en `main` activan el build
 2. **Carpeta docs**: El contenido se publica desde `/docs`
 3. **URL en vivo**: https://neoscraids.github.io/lenguitas-felices/
 
+### Netlify (Recomendado)
+Para mejor rendimiento y características avanzadas:
+
+1. **Configuración automática**: El proyecto incluye `netlify.toml`
+2. **Formularios funcionales**: Netlify Forms configurado
+3. **Deploy continuo**: Desde GitHub automáticamente
+4. **Ver guía completa**: [NETLIFY_DEPLOY.md](./NETLIFY_DEPLOY.md)
+
 ### Para desplegar manualmente:
 
+#### GitHub Pages:
 ```bash
 npm run build
 cp -r build/* docs/
 git add docs
 git commit -m "Deploy to GitHub Pages"
 git push
+```
+
+#### Netlify:
+```bash
+npm run build
+# Arrastra la carpeta build a netlify.com
 ```
 
 ## 🤝 Contribuir
