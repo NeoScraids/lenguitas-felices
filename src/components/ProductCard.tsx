@@ -21,7 +21,15 @@ const hoverMotion = {
 };
 
 const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
-  const { image, name, description, price } = product;
+  let { image, name, description, price } = product;
+  // Si la imagen es jpg o png y existe el .webp equivalente, usa .webp
+  if (image.endsWith('.jpg')) {
+    const webp = image.replace('.jpg', '.webp');
+    image = webp;
+  } else if (image.endsWith('.png')) {
+    const webp = image.replace('.png', '.webp');
+    image = webp;
+  }
   const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%23fcd9bd" offset="0%"/><stop stop-color="%23feecdc" offset="50%"/><stop stop-color="%23fef7f0" offset="100%"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" font-family="Arial, sans-serif" font-size="22" fill="%239a3412" text-anchor="middle" dy="8">Imagen no disponible</text></svg>`);
   const [src, setSrc] = useState(image);
   const handleError = useCallback(() => {

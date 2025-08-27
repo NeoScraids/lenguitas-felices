@@ -10,14 +10,14 @@ const products = [
     name: 'Galletas de Maní',
     description: 'Crujientes y naturales con mantequilla de maní.',
     price: '$18.000 COP',
-    image: '/images/peanut-butter-biscuit.jpg',
+    image: '/images/peanut-butter-biscuit.webp',
   },
   {
     id: 2,
     name: 'Pastel de Algarroba',
     description: 'Suave, húmedo y seguro para tu perrito.',
     price: '$25.000 COP',
-    image: '/images/carob-cake.jpg',
+    image: '/images/carob-cake.webp',
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const products = [
     name: 'Bocados Manzana Canela',
     description: 'Aromáticos y llenos de ternura.',
     price: '$20.000 COP',
-    image: '/images/apple-cinnamon-bites.jpg',
+    image: '/images/apple-cinnamon-bites.webp',
   },
 ];
 
