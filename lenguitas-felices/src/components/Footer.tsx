@@ -5,14 +5,6 @@ function Footer() {
     <footer className="bg-warm-900 py-8 px-4 mt-12">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         <div>
-          <a
-            href="https://www.instagram.com/lenguitasfelices/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline text-warm-200 text-sm mb-2 block"
-          >
-            Instagram
-          </a>
           <h3 className="text-lg font-bold mb-2 text-white">Lengüitas Felices</h3>
           <p className="text-warm-200 text-sm leading-relaxed">
             Postres especiales hechos con amor para las lengüitas más felices.
