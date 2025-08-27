@@ -1,25 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import dogDessert from '../dog-dessert.png';
+import GradientBlobs from './GradientBlobs';
 
 const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative flex flex-col items-center justify-center min-h-screen overflow-x-hidden overflow-y-hidden bg-gradient-to-b from-warm-50 via-warm-100 to-warm-200 text-center px-4"
+      className="relative flex flex-col items-center justify-center min-h-screen overflow-x-hidden overflow-y-hidden text-center px-4 scroll-mt-24"
     >
-      {/* Animaciones de fondo con Framer Motion y nuevos colores */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-        <div
-          className="absolute top-0 left-0 w-72 h-72 md:w-80 md:h-80 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, #f5e9da 60%, #e8c5a0 100%)', opacity: 0.4 }}
-        />
-        <div
-          className="absolute bottom-0 right-0 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, #e8c5a0 60%, #f5e9da 100%)', opacity: 0.4 }}
-        />
-      </div>
+  <GradientBlobs variant="light" />
       <motion.img
-        src="/dog-dessert.png"
+        src={dogDessert}
         alt="Perrito feliz con postre"
         className="w-56 h-56 md:w-72 md:h-72 object-contain drop-shadow-xl relative z-10 rounded-full border-8 border-white/60 shadow-lg bg-white/40 backdrop-blur"
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
@@ -27,7 +19,7 @@ const Hero: React.FC = () => {
         transition={{ duration: 0.9, ease: 'easeOut' }}
       />
       <motion.h1
-        className="mt-8 text-4xl md:text-6xl font-extrabold tracking-tight text-purple-700 drop-shadow-sm relative z-10"
+  className="mt-8 text-4xl md:text-6xl font-extrabold tracking-tight text-warm-800 drop-shadow-sm relative z-10"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SectionTitle from './SectionTitle';
+import GradientBlobs from './GradientBlobs';
 
 const ContactForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -45,30 +47,15 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="relative py-24 bg-gradient-to-b from-warm-300 via-warm-400 to-warm-500 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 right-10 w-56 h-56 bg-warm-100 rounded-full blur-3xl opacity-40" />
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-warm-200 rounded-full blur-3xl opacity-40" />
-      </div>
+    <section id="contacto" className="relative py-28 overflow-hidden scroll-mt-24">
+      <GradientBlobs variant="dark" />
       <div className="relative max-w-4xl mx-auto px-6">
-        <motion.h2
-          className="text-4xl md:text-5xl font-extrabold text-center text-warm-800 mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-        >
-          Contáctanos
-        </motion.h2>
-        <motion.p
-          className="text-center max-w-2xl mx-auto text-warm-700 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
-        >
-          ¿Tienes dudas o quieres un pedido especial? Escríbenos, nos encanta ayudarte.
-        </motion.p>
+        <SectionTitle
+          title="Contáctanos"
+          subtitle="¿Tienes dudas o quieres un pedido especial? Escríbenos, nos encanta ayudarte."
+          className="text-warm-50"
+          subtitleClassName="text-warm-100"
+        />
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -108,7 +95,7 @@ const ContactForm: React.FC = () => {
                   name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
+                  className="w-full rounded-xl border border-warm-300 bg-white/70 focus:bg-white focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
                   placeholder="Tu nombre"
                   required
                 />
@@ -120,7 +107,7 @@ const ContactForm: React.FC = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
+                  className="w-full rounded-xl border border-warm-300 bg-white/70 focus:bg-white focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition"
                   placeholder="tu@correo.com"
                   required
                 />
@@ -131,7 +118,7 @@ const ContactForm: React.FC = () => {
                   name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full rounded-xl border border-warm-300 bg-white/60 focus:bg-white/90 focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition resize-none"
+                  className="w-full rounded-xl border border-warm-300 bg-white/70 focus:bg-white focus:ring-2 focus:ring-warm-500 focus:outline-none px-4 py-3 text-warm-800 placeholder-warm-600 transition resize-none"
                   rows={5}
                   placeholder="Cuéntanos qué necesitas..."
                   required

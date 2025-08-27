@@ -5,8 +5,29 @@
 /* Custom styles */
 html { scroll-behavior: smooth; }
 body {
-    @apply bg-warm-50 text-warm-800;
+    /* Gradiente personalizado: inicio claro, naranja en el medio, café profundo al final */
+    background: linear-gradient(
+        to bottom,
+        #fff6ec 0%,      /* warm-50 */
+        #ffe3c7 16%,     /* warm-100 */
+        #ffd3ad 28%,     /* warm-200 */
+        #ffb679 42%,     /* warm-400 (naranja suave) */
+        #ff9d5c 56%,     /* warm-500 (naranja principal) */
+        #c57334 70%,     /* warm-600 transición a tonos café */
+        #8b5a2b 84%,     /* warm-700 café medio */
+        #7a5235 100%     /* café final más claro (custom) */
+    );
+    color: #4E342E; /* mantiene legibilidad en la zona clara */
     overflow-x: hidden;
+    min-height: 100%;
+    background-attachment: scroll; /* evitar issues móviles con fixed */
+}
+
+/* Animación orbes sutil */
+@keyframes orbFloat {
+    0% { transform: translate3d(0,0,0) scale(1); }
+    50% { transform: translate3d(var(--dx, 0), calc(var(--dy, 0) * 0.55), 0) scale(1.02); }
+    100% { transform: translate3d(var(--dx,0), var(--dy,0),0) scale(1.04); }
 }
 
 h1, h2, h3, h4, h5, h6 {

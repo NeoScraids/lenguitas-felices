@@ -9,7 +9,7 @@ Un sitio web moderno y elegante especializado en postres especiales para perros,
 
 ## 🌐 Demo en Vivo
 
-**[Ver sitio web →](https://neoscraids.github.io/lenguitas-felices/)**
+**[Ver sitio web →](https://lengüitas-felices.netlify.app)**
 
 ## 📋 Descripción
 
@@ -141,7 +141,7 @@ El sitio está configurado para desplegarse automáticamente en GitHub Pages:
 
 1. **Build automático**: Los cambios en `main` activan el build
 2. **Carpeta docs**: El contenido se publica desde `/docs`
-3. **URL en vivo**: https://neoscraids.github.io/lenguitas-felices/
+3. **URL en vivo**: https://lengüitas-felices.netlify.app
 
 ### Netlify (Recomendado)
 Para mejor rendimiento y características avanzadas:
@@ -183,7 +183,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 ## 📞 Contacto
 
 - **Repositorio**: [https://github.com/NeoScraids/lenguitas-felices](https://github.com/NeoScraids/lenguitas-felices)
-- **Sitio Web**: [https://neoscraids.github.io/lenguitas-felices/](https://neoscraids.github.io/lenguitas-felices/)
+- **Sitio Web**: [https://lengüitas-felices.netlify.app](https://lengüitas-felices.netlify.app)
 - **Issues**: [https://github.com/NeoScraids/lenguitas-felices/issues](https://github.com/NeoScraids/lenguitas-felices/issues)
 
 ## 🙏 Agradecimientos
@@ -207,4 +207,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 For any inquiries, please reach out to us at [contact@lenguitasfelices.com](mailto:contact@lenguitasfelices.com). 
 
-Thank you for visiting Lenguitas Felices! Enjoy our special desserts for your furry friends!
+### 👍 Conclusión
+
+Thank you for visiting Lengüitas Felices! Enjoy our special desserts for your furry friends!

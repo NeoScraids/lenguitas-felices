@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import AnimatedBackground from '../components/AnimatedBackground';
 import Hero from '../components/Hero';
 import Products from '../components/Products';
 import Testimonials from '../components/Testimonials';
@@ -9,7 +10,8 @@ import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col font-sans scroll-smooth">
+    <div className="flex flex-col font-sans scroll-smooth relative">
+      <AnimatedBackground />
       <Header />
       <main className="flex flex-col">
         <Hero />

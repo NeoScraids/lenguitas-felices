@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenguitas Felices</title>
-    <meta name="description" content="Postres especiales para perros - Lenguitas Felices" />
-    <meta name="theme-color" content="#ffb679" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Postres especiales para perros - Lengüitas Felices" />
+    <title>Lengüitas Felices</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="/styles/tailwind.css" rel="stylesheet">
 </head>
-<body class="bg-warm-50 text-warm-800">
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- Netlify static form (hidden) so Netlify can detect the form on build -->
+    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none">
+            <label>Don\'t fill this out if you\'re human: <input name="bot-field" /></label>
+        </p>
+        <p><input type="text" name="name" /></p>
+        <p><input type="email" name="email" /></p>
+        <p><textarea name="message"></textarea></p>
+    </form>
 </body>
 </html>
