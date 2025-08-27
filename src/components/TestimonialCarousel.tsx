@@ -42,21 +42,40 @@ const testimonials: Testimonial[] = [
 
 const variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 100 : -100,
+    x: direction > 0 ? 80 : -80,
     opacity: 0,
-    scale: 0.95,
+    scale: 0.98,
+    filter: 'blur(8px)',
+    transition: {
+      x: { type: 'spring', stiffness: 120, damping: 18 },
+      opacity: { duration: 0.35 },
+      scale: { duration: 0.35 },
+      filter: { duration: 0.35 },
+    },
   }),
   center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    filter: 'blur(0px)',
+    transition: {
+      x: { type: 'spring', stiffness: 80, damping: 16 },
+      opacity: { duration: 0.5 },
+      scale: { duration: 0.5 },
+      filter: { duration: 0.5 },
+    },
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? -100 : 100,
+    x: direction > 0 ? -80 : 80,
     opacity: 0,
-    scale: 0.95,
-    transition: { duration: 0.4, ease: 'easeIn' },
+    scale: 0.98,
+    filter: 'blur(8px)',
+    transition: {
+      x: { type: 'spring', stiffness: 120, damping: 18 },
+      opacity: { duration: 0.35 },
+      scale: { duration: 0.35 },
+      filter: { duration: 0.35 },
+    },
   }),
 };
 
