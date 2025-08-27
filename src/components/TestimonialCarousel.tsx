@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Testimonial {
@@ -15,54 +15,55 @@ const testimonials: Testimonial[] = [
     text: 'Desde que probó las galletas, Bruno mueve la cola cada vez que abrimos la caja.',
     author: 'Laura',
     dog: 'Bruno',
-    image: '/dogs/dog1.webp',
+    image: '/dogs/dog1.jpg',
   },
   {
     id: 2,
     text: 'Luna es delicada del estómago y estos postres le caen perfecto. ¡Feliz y sana!',
     author: 'Marcos',
     dog: 'Luna',
-    image: '/dogs/dog2.webp',
+    image: '/dogs/dog2.jpg',
   },
   {
     id: 3,
     text: 'Perfectos para celebrar su cumpleaños. Rocky se relamía de alegría.',
     author: 'Ana',
     dog: 'Rocky',
-    image: '/dogs/dog3.webp',
+    image: '/dogs/dog3.jpg',
   },
   {
     id: 4,
     text: 'Ingredientes naturales y se nota. Coco ya reconoce la bolsa y se emociona.',
     author: 'Sofía',
     dog: 'Coco',
-    image: '/dogs/dog4.webp',
+    image: '/dogs/dog4.jpg',
   },
 ];
 
-// Variantes para animar solo el contenido (no los bullets)
-const contentVariants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 48 : -48, y: 8, filter: 'blur(4px)' }),
-  center: { opacity: 1, x: 0, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: 'easeOut' } },
-  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -48 : 48, y: -6, filter: 'blur(4px)', transition: { duration: 0.45, ease: 'easeInOut' } }),
+const variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 100 : -100,
+    opacity: 0,
+    scale: 0.95,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -100 : 100,
+    opacity: 0,
+    scale: 0.95,
+    transition: { duration: 0.4, ease: 'easeIn' },
+  }),
 };
 
 const TestimonialCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  // Guardamos cuáles imágenes fallaron para no volver a intentar el formato problemático
-  const [failedWebp, setFailedWebp] = useState<Record<number, boolean>>({});
-  const [failedJpg, setFailedJpg] = useState<Record<number, boolean>>({});
-
+  const [direction, setDirection] = useState(0);
   const current = testimonials[index];
-
-  const handleError = useCallback((format: 'webp' | 'jpg', id: number) => {
-    if (format === 'webp') {
-      setFailedWebp((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
-    } else {
-      setFailedJpg((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
-    }
-  }, []);
 
   const paginate = (dir: number) => {
     setDirection(dir);
@@ -75,111 +76,76 @@ const TestimonialCarousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative mx-auto max-w-3xl">
-      <div className="relative overflow-hidden glass-card p-8 md:p-10" role="region" aria-label="Carrusel de testimonios" aria-live="polite">
-        {/* Overlay unificado */}
-        <div className="absolute inset-0 pointer-events-none z-0 bg-gradient-to-br from-warm-100/35 via-transparent to-warm-400/25 opacity-55" />
-        <div className="absolute -inset-10 pointer-events-none z-0 blur-xl opacity-25 bg-gradient-to-br from-warm-400/30 via-transparent to-warm-600/20" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(255,244,232,0.55),transparent_68%),radial-gradient(circle_at_85%_78%,rgba(235,140,60,0.30),transparent_62%)] mix-blend-soft-light" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent_28%,transparent_72%,rgba(120,60,20,0.12))]" />
-        <div className="grid md:grid-cols-[160px_1fr] gap-8 items-start relative">
+    <div className="relative mx-auto max-w-2xl px-4 py-8">
+      <div className="relative rounded-3xl shadow-2xl bg-gradient-to-br from-white via-warm-100 to-warm-200 p-6 md:p-10 border border-warm-200/60" role="region" aria-label="Carrusel de testimonios" aria-live="polite">
+        {/* Botón izquierdo */}
+        <button
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-warm-100 rounded-full shadow-lg p-2 z-30 text-2xl font-bold text-warm-600 transition"
+          onClick={() => paginate(-1)}
+          aria-label="Anterior"
+        >
+          ‹
+        </button>
+        {/* Botón derecho */}
+        <button
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-warm-100 rounded-full shadow-lg p-2 z-30 text-2xl font-bold text-warm-600 transition"
+          onClick={() => paginate(1)}
+          aria-label="Siguiente"
+        >
+          ›
+        </button>
+        <div className="grid md:grid-cols-[160px_1fr] gap-8 items-center">
           {/* Columna izquierda (imagen + nombre perro) */}
           <div className="flex flex-col items-center">
-            <div className="relative w-40 h-40 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-white/95 to-warm-100/60 z-10">
-              <AnimatePresence mode="wait" initial={false} custom={direction}>
-                <motion.picture
-                  key={current.id + '-img'}
-                  variants={contentVariants}
-                  custom={direction}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                >
-                  {/* Sólo declaramos la fuente webp si no falló antes */}
-                  {!failedWebp[current.id] && (
-                    <source
-                      srcSet={`${current.image}`}
-                      type="image/webp"
-                      sizes="(max-width: 640px) 100vw, 400px"
-                      onError={() => handleError('webp', current.id)}
-                    />
-                  )}
-                  <img
-                    src={failedJpg[current.id] ? '/dogs/dog1.jpg' : current.image.replace('.webp', '.jpg')}
-                    alt={current.dog}
-                    width={400}
-                    height={400}
-                    className="absolute inset-0 w-full h-full object-cover bg-warm-100 animate-pulse"
-                    loading="lazy"
-                    decoding="async"
-                    onError={() => handleError('jpg', current.id)}
-                  />
-                </motion.picture>
-              </AnimatePresence>
+            <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg bg-gradient-to-br from-white/95 to-warm-100/60 border-4 border-warm-200">
+              <img
+                src={current.image}
+                alt={current.dog}
+                width={160}
+                height={160}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="mt-4 text-sm font-medium text-warm-700">
+            <div className="mt-4 text-base font-semibold text-warm-700 text-center drop-shadow-sm">
               {current.dog}
             </div>
           </div>
-          {/* Columna derecha (texto + autor) */}
-          <div className="text-left">
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
+          {/* Columna derecha (texto + autor) con animación */}
+          <div className="flex flex-col justify-center">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
-                key={current.id + '-text'}
-                variants={contentVariants}
+                key={current.id}
                 custom={direction}
+                variants={variants}
                 initial="enter"
                 animate="center"
                 exit="exit"
+                className="w-full"
               >
-                <p className="text-lg md:text-xl font-medium text-warm-800 leading-relaxed">
-                  "{current.text}"
+                <p className="text-xl md:text-2xl font-medium text-warm-800 leading-relaxed mb-4 italic">
+                  “{current.text}”
                 </p>
-                <p className="mt-6 font-semibold text-warm-700 tracking-wide text-sm uppercase">
-                  {current.author}
+                <p className="font-bold text-warm-600 tracking-wide text-base uppercase text-right">
+                  — {current.author}
                 </p>
               </motion.div>
             </AnimatePresence>
-            {/* Bullets estáticos */}
-            <div className="mt-6 flex items-center space-x-3">
-              {testimonials.map((t, i) => (
-                <motion.button
-                  key={t.id}
-                  aria-label={`Ir a testimonio ${i + 1}`}
-                  onClick={() => {
-                    setDirection(i > index ? 1 : -1);
-                    setIndex(i);
-                  }}
-                  initial={false}
-                  animate={i === index ? { scale: 1.18 } : { scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 340, damping: 22 }}
-                  className={`h-3 w-7 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-warm-400/60 focus-visible:ring-offset-1 focus-visible:ring-offset-warm-50 shadow transition-all duration-400 ${i === index ? 'bg-gradient-to-r from-warm-100 via-warm-200 to-warm-300 shadow-warm-200/40' : 'bg-warm-50/98 shadow-warm-100/20 hover:bg-warm-100'}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <button
-            onClick={() => paginate(-1)}
-            className="p-2 rounded-full bg-white/70 hover:bg-white shadow-md text-warm-700 hover:scale-105 active:scale-95 transition"
-            aria-label="Anterior"
-          >
-            ‹
-          </button>
-        </div>
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-          <button
-            onClick={() => paginate(1)}
-            className="p-2 rounded-full bg-white/70 hover:bg-white shadow-md text-warm-700 hover:scale-105 active:scale-95 transition"
-            aria-label="Siguiente"
-          >
-            ›
-          </button>
+        {/* Bullets de navegación */}
+        <div className="flex justify-center items-center mt-8 gap-3">
+          {testimonials.map((t, i) => (
+            <button
+              key={t.id}
+              className={`h-3 w-7 rounded-full transition-all duration-300 shadow focus:outline-none ${i === index ? 'bg-gradient-to-r from-warm-200 via-warm-400 to-warm-600 scale-110' : 'bg-warm-100/80 hover:bg-warm-200'}`}
+              aria-label={`Ir a testimonio ${i + 1}`}
+              onClick={() => paginate(i - index)}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default React.memo(TestimonialCarousel);
+export default memo(TestimonialCarousel);
