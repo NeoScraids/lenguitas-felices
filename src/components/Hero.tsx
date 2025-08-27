@@ -11,11 +11,11 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
         <div
           className="absolute top-0 left-0 w-72 h-72 md:w-80 md:h-80 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, #f5e9da 60%, #a78bfa 100%)', opacity: 0.4 }}
+          style={{ background: 'linear-gradient(135deg, #f5e9da 60%, #e8c5a0 100%)', opacity: 0.4 }}
         />
         <div
           className="absolute bottom-0 right-0 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl"
-          style={{ background: 'linear-gradient(135deg, #a78bfa 60%, #f5e9da 100%)', opacity: 0.4 }}
+          style={{ background: 'linear-gradient(135deg, #e8c5a0 60%, #f5e9da 100%)', opacity: 0.4 }}
         />
       </div>
       <motion.img
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
         Lengüitas Felices
       </motion.h1>
       <motion.p
-        className="mt-4 text-xl md:text-2xl font-bold text-beige-700 uppercase relative z-10 tracking-wide"
+        className="mt-4 text-xl md:text-2xl font-bold text-beige-700 relative z-10 tracking-wide"
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55, duration: 0.8 }}
