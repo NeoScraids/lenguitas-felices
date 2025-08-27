@@ -45,7 +45,7 @@ const SocialIcons: React.FC = () => {
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.1 * i, duration: 0.5 }}
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.08, rotate: 2 }}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.12, rotate: 4 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
                 aria-label={item.label}
               >

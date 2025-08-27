@@ -11,14 +11,16 @@ const Hero: React.FC = () => {
     >
   <GradientBlobs variant="light" />
       <motion.img
-        src={logo}
-        alt="Logo Lengüitas Felices"
-        width={400}
-        height={400}
-        className="w-[16rem] h-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] object-contain drop-shadow-xl relative z-10 rounded-full border-[14px] border-white/60 shadow-lg bg-white/40 backdrop-blur"
-        initial={{ opacity: 0, y: 40, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.9, ease: 'easeOut' }}
+  src={logo}
+  alt="Logo Lengüitas Felices"
+  width={400}
+  height={400}
+        fetchPriority="high"
+  className="w-[16rem] h-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] object-contain drop-shadow-xl relative z-10 rounded-full border-[14px] border-white/60 shadow-lg bg-white/40 backdrop-blur"
+  initial={{ opacity: 0, y: 40, scale: 0.9 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  whileHover={{ scale: 1.04, filter: 'drop-shadow(0 0 32px #ffb67999)' }}
+  transition={{ duration: 0.9, ease: 'easeOut' }}
       />
     <motion.h1
   className="mt-10 mb-3 sm:mt-12 sm:mb-4 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-warm-800 drop-shadow-sm relative z-10 px-2"
@@ -38,14 +40,14 @@ const Hero: React.FC = () => {
       </motion.p>
       <motion.a
         href="#productos"
-        className="relative z-10 mt-8 mb-4 inline-block group"
+        className="relative z-10 mt-8 mb-4 inline-block group focus-visible:outline-none"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
       >
-  <span className="px-7 py-3 md:px-8 rounded-full bg-gradient-to-r from-warm-500 to-warm-600 text-white font-semibold text-base sm:text-lg shadow-lg shadow-warm-500/30 ring-2 ring-white/50 backdrop-blur transition-all group-hover:shadow-xl group-hover:shadow-warm-600/40">
+        <span className="cta-pulse px-7 py-3 md:px-8 rounded-full bg-gradient-to-r from-warm-500 to-warm-600 text-white font-semibold text-base sm:text-lg shadow-lg shadow-warm-500/30 ring-2 ring-white/50 backdrop-blur transition-all group-hover:shadow-xl group-hover:shadow-warm-600/40 focus-visible:ring-4 focus-visible:ring-warm-400/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-100/80">
           Conoce nuestros productos
         </span>
       </motion.a>

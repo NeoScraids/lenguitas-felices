@@ -68,7 +68,10 @@ const TestimonialCarousel: React.FC = () => {
 
   return (
     <div className="relative mx-auto max-w-3xl">
-      <div className="relative overflow-hidden rounded-3xl bg-[linear-gradient(150deg,rgba(255,233,205,0.58),rgba(255,214,176,0.46)_50%,rgba(245,184,130,0.40))] backdrop-blur-xl shadow-[0_14px_50px_-16px_rgba(0,0,0,0.42)] p-8 md:p-10">
+      <div className="relative overflow-hidden rounded-3xl bg-[linear-gradient(150deg,rgba(255,233,205,0.58),rgba(255,214,176,0.46)_50%,rgba(245,184,130,0.40))] backdrop-blur-xl shadow-[0_14px_50px_-16px_rgba(0,0,0,0.42)] ring-2 ring-warm-200/40 border-2 border-transparent hover:border-warm-400/60 transition-all duration-400 p-8 md:p-10" role="region" aria-label="Carrusel de testimonios" aria-live="polite">
+        {/* Overlay unificado */}
+        <div className="absolute inset-0 pointer-events-none z-0 bg-gradient-to-br from-warm-100/35 via-transparent to-warm-400/25 opacity-55" />
+        <div className="absolute -inset-10 pointer-events-none z-0 blur-xl opacity-25 bg-gradient-to-br from-warm-400/30 via-transparent to-warm-600/20" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(255,244,232,0.55),transparent_68%),radial-gradient(circle_at_85%_78%,rgba(235,140,60,0.30),transparent_62%)] mix-blend-soft-light" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent_28%,transparent_72%,rgba(120,60,20,0.12))]" />
         <div className="grid md:grid-cols-[160px_1fr] gap-8 items-start relative">

@@ -40,14 +40,16 @@ const Products: React.FC = () => {
     <section id="productos" className="relative py-28 overflow-hidden scroll-mt-24">
       <GradientBlobs variant="mid" />
       {/* Fondo de huellas, sin fondo blanco */}
-      <div className="absolute inset-0 bg-[url('/patterns/paws.png')] opacity-5 mix-blend-multiply pointer-events-none" />
+  <div className="absolute inset-0 bg-[url('/patterns/paws.png')] opacity-5 mix-blend-multiply pointer-events-none z-0" />
+  {/* Blobs decorativos para dinamismo */}
+  <GradientBlobs variant="mid" className="z-0 opacity-40 animate-pulse-slow" />
       <div className="relative max-w-6xl mx-auto px-2 sm:px-6">
         <SectionTitle
           title="Nuestros Productos"
           subtitle="Ingredientes naturales, sabor irresistible y mucho amor en cada mordida."
         />
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-7 mt-10">
-          {products.map((p) => (
+  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-7 mt-10" role="list" aria-label="Lista de productos disponibles">
+          {products.map((p, i) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
