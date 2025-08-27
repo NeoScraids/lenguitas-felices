@@ -48,6 +48,8 @@ const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
       <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden mb-4 relative max-w-[160px] sm:max-w-full mx-auto shadow-md">
         <img
           src={src}
+          srcSet={`${src} 1x, ${src.replace('.webp', '@2x.webp')} 2x`}
+          sizes="(max-width: 640px) 100vw, 400px"
           onError={handleError}
           alt={name}
           width={400}
@@ -70,4 +72,4 @@ const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

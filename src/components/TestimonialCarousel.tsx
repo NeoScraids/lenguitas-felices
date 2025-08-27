@@ -84,6 +84,8 @@ const TestimonialCarousel: React.FC = () => {
                   animate="center"
                   exit="exit"
                   src={imageErrorMap[testimonials[index].id] ? fallback : testimonials[index].image}
+                  srcSet={`${testimonials[index].image} 1x, ${testimonials[index].image.replace('.webp', '@2x.webp')} 2x`}
+                  sizes="(max-width: 640px) 100vw, 400px"
                   onError={() => handleImgError(testimonials[index].id)}
                   alt={testimonials[index].dog}
                   width={400}
@@ -159,4 +161,4 @@ const TestimonialCarousel: React.FC = () => {
   );
 };
 
-export default TestimonialCarousel;
+export default React.memo(TestimonialCarousel);

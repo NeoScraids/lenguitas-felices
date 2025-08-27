@@ -7,6 +7,7 @@ const Testimonials: React.FC = () => {
   return (
     <section id="comentarios" className="relative py-28 overflow-hidden scroll-mt-24">
       <GradientBlobs variant="mid" />
+      {/* Sin fondo blanco */}
       <div className="relative max-w-6xl mx-auto px-6">
         <SectionTitle
           title="Historias Felices"

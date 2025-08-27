@@ -40,6 +40,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
     <div className={`mb-12 ${baseAlign}`} id={id}>
       <motion.h2
         className={`text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.28] md:leading-[1.24] pb-2 pt-1 overflow-visible ${!noBaseColor ? 'text-warm-800' : ''} mb-5 ${className}`}
+        aria-label={typeof title === 'string' ? title : undefined}
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -62,4 +63,4 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   );
 };
 
-export default SectionTitle;
+export default React.memo(SectionTitle);

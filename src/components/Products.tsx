@@ -39,6 +39,7 @@ const Products: React.FC = () => {
   return (
     <section id="productos" className="relative py-28 overflow-hidden scroll-mt-24">
       <GradientBlobs variant="mid" />
+      {/* Fondo de huellas, sin fondo blanco */}
       <div className="absolute inset-0 bg-[url('/patterns/paws.png')] opacity-5 mix-blend-multiply pointer-events-none" />
       <div className="relative max-w-6xl mx-auto px-2 sm:px-6">
         <SectionTitle
