@@ -98,13 +98,18 @@ const TestimonialCarousel: React.FC = () => {
           {/* Columna izquierda (imagen + nombre perro) */}
           <div className="flex flex-col items-center">
             <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg bg-gradient-to-br from-white/95 to-warm-100/60 border-4 border-warm-200">
-              <img
-                src={current.image}
-                alt={current.dog}
-                width={160}
-                height={160}
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <source srcSet={current.image} type="image/webp" />
+                <img
+                  src={current.image.replace('.webp', '.jpg')}
+                  alt={current.dog}
+                  width={160}
+                  height={160}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="mt-4 text-base font-semibold text-warm-700 text-center drop-shadow-sm">
               {current.dog}
