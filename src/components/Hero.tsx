@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import dogDessert from '../dog-dessert.png';
+import logo from '../logo.webp';
 import GradientBlobs from './GradientBlobs';
 
 const Hero: React.FC = () => {
@@ -11,9 +11,9 @@ const Hero: React.FC = () => {
     >
   <GradientBlobs variant="light" />
       <motion.img
-        src={dogDessert}
-        alt="Perrito feliz con postre"
-        className="w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 object-contain drop-shadow-xl relative z-10 rounded-full border-8 border-white/60 shadow-lg bg-white/40 backdrop-blur"
+        src={logo}
+        alt="Logo Lengüitas Felices"
+        className="w-[22rem] h-[22rem] sm:w-[28rem] sm:h-[28rem] md:w-[36rem] md:h-[36rem] object-contain drop-shadow-xl relative z-10 rounded-full border-[14px] border-white/60 shadow-lg bg-white/40 backdrop-blur"
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
