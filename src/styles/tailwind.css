@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+html { scroll-behavior: smooth; }
+body {
+    /* Gradiente personalizado: inicio claro, naranja en el medio, café profundo al final */
+    background: linear-gradient(
+        to bottom,
+        #fff6ec 0%,      /* warm-50 */
+        #ffe3c7 16%,     /* warm-100 */
+        #ffd3ad 28%,     /* warm-200 */
+        #ffb679 42%,     /* warm-400 (naranja suave) */
+        #ff9d5c 56%,     /* warm-500 (naranja principal) */
+        #c57334 70%,     /* warm-600 transición a tonos café */
+        #8b5a2b 84%,     /* warm-700 café medio */
+        #7a5235 100%     /* café final más claro (custom) */
+    );
+    color: #4E342E; /* mantiene legibilidad en la zona clara */
+    overflow-x: hidden;
+    min-height: 100%;
+    background-attachment: scroll; /* evitar issues móviles con fixed */
+}
+
+/* Utilidades personalizadas reutilizables */
+.glass-card {
+    /* Reemplazo sin utilidades con '/' para compatibilidad Tailwind 2.2 */
+    border-radius: 1.5rem; /* rounded-3xl */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px); /* backdrop-blur */
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.18); /* shadow-lg */
+    border: 2px solid transparent; /* border-2 border-transparent */
+    transition: all .4s ease; /* transition-all duration-400 */
+    position: relative;
+}
+.glass-card:hover {
+    border-color: rgba(255,182,121,0.55); /* warm-400 hover */
+}
+
+@keyframes subtlePulse {
+    0%, 60% { box-shadow: 0 0 0 0 rgba(255,182,121,0.45); }
+    70% { box-shadow: 0 0 0 8px rgba(255,182,121,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,182,121,0); }
+}
+.cta-pulse {
+    animation: subtlePulse 7.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-pulse { animation: none; }
+}
+
+/* Animación orbes sutil */
+@keyframes orbFloat {
+    0% { transform: translate3d(0,0,0) scale(1); }
+    50% { transform: translate3d(var(--dx, 0), calc(var(--dy, 0) * 0.55), 0) scale(1.02); }
+    100% { transform: translate3d(var(--dx,0), var(--dy,0),0) scale(1.04); }
+}
+
+h1, h2, h3, h4, h5, h6 { color: #4E342E; }
+a { color: #c57334; transition: color .3s ease; }
+a:hover { color: #8b5a2b; }
+
+/* Button base intentionally minimal; styled per component */
