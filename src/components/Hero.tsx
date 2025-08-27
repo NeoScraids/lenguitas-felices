@@ -13,7 +13,9 @@ const Hero: React.FC = () => {
       <motion.img
         src={logo}
         alt="Logo Lengüitas Felices"
-        className="w-[22rem] h-[22rem] sm:w-[28rem] sm:h-[28rem] md:w-[36rem] md:h-[36rem] object-contain drop-shadow-xl relative z-10 rounded-full border-[14px] border-white/60 shadow-lg bg-white/40 backdrop-blur"
+        width={400}
+        height={400}
+        className="w-[16rem] h-[16rem] sm:w-[20rem] sm:h-[20rem] md:w-[25rem] md:h-[25rem] object-contain drop-shadow-xl relative z-10 rounded-full border-[14px] border-white/60 shadow-lg bg-white/40 backdrop-blur"
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, ease: 'easeOut' }}

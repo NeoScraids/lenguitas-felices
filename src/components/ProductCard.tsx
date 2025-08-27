@@ -50,6 +50,8 @@ const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
           src={src}
           onError={handleError}
           alt={name}
+          width={400}
+          height={400}
           className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
           decoding="async"

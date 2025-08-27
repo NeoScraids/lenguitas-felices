@@ -86,6 +86,8 @@ const TestimonialCarousel: React.FC = () => {
                   src={imageErrorMap[testimonials[index].id] ? fallback : testimonials[index].image}
                   onError={() => handleImgError(testimonials[index].id)}
                   alt={testimonials[index].dog}
+                  width={400}
+                  height={400}
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
