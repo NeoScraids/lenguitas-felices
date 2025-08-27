@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+html { scroll-behavior: smooth; }
+body {
+    @apply bg-warm-50 text-warm-800;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply text-warm-800;
+}
+
+a {
+    @apply text-warm-600 hover:text-warm-700 transition duration-300;
+}
+
+/* Button base intentionally minimal; styled per component */
