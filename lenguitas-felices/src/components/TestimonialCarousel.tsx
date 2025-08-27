@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Testimonial {
@@ -50,7 +50,19 @@ const contentVariants = {
 const TestimonialCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  // ...existing code...
+  // Guardamos cuáles imágenes fallaron para no volver a intentar el formato problemático
+  const [failedWebp, setFailedWebp] = useState<Record<number, boolean>>({});
+  const [failedJpg, setFailedJpg] = useState<Record<number, boolean>>({});
+
+  const current = testimonials[index];
+
+  const handleError = useCallback((format: 'webp' | 'jpg', id: number) => {
+    if (format === 'webp') {
+      setFailedWebp((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+    } else {
+      setFailedJpg((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+    }
+  }, []);
 
   const paginate = (dir: number) => {
     setDirection(dir);
@@ -73,40 +85,47 @@ const TestimonialCarousel: React.FC = () => {
         <div className="grid md:grid-cols-[160px_1fr] gap-8 items-start relative">
           {/* Columna izquierda (imagen + nombre perro) */}
           <div className="flex flex-col items-center">
-            <div className="relative w-40 h-40 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-white/95 to-warm-100/60">
+            <div className="relative w-40 h-40 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-white/95 to-warm-100/60 z-10">
               <AnimatePresence mode="wait" initial={false} custom={direction}>
                 <motion.picture
-                  key={testimonials[index].id + '-img'}
+                  key={current.id + '-img'}
                   variants={contentVariants}
                   custom={direction}
                   initial="enter"
                   animate="center"
                   exit="exit"
                 >
-                  <source srcSet={`${testimonials[index].image} 1x, ${testimonials[index].image.replace('.webp', '@2x.webp')} 2x`} type="image/webp" sizes="(max-width: 640px) 100vw, 400px" />
+                  {/* Sólo declaramos la fuente webp si no falló antes */}
+                  {!failedWebp[current.id] && (
+                    <source
+                      srcSet={`${current.image}`}
+                      type="image/webp"
+                      sizes="(max-width: 640px) 100vw, 400px"
+                      onError={() => handleError('webp', current.id)}
+                    />
+                  )}
                   <img
-                    src={testimonials[index].image.replace('.webp', '.jpg')}
-                    srcSet={`${testimonials[index].image.replace('.webp', '.jpg')} 1x, ${testimonials[index].image.replace('.webp', '@2x.jpg')} 2x`}
-                    sizes="(max-width: 640px) 100vw, 400px"
-                    alt={testimonials[index].dog}
+                    src={failedJpg[current.id] ? '/dogs/dog1.jpg' : current.image.replace('.webp', '.jpg')}
+                    alt={current.dog}
                     width={400}
                     height={400}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover bg-warm-100 animate-pulse"
                     loading="lazy"
                     decoding="async"
+                    onError={() => handleError('jpg', current.id)}
                   />
                 </motion.picture>
               </AnimatePresence>
             </div>
             <div className="mt-4 text-sm font-medium text-warm-700">
-              {testimonials[index].dog}
+              {current.dog}
             </div>
           </div>
           {/* Columna derecha (texto + autor) */}
           <div className="text-left">
             <AnimatePresence mode="wait" initial={false} custom={direction}>
               <motion.div
-                key={testimonials[index].id + '-text'}
+                key={current.id + '-text'}
                 variants={contentVariants}
                 custom={direction}
                 initial="enter"
@@ -114,10 +133,10 @@ const TestimonialCarousel: React.FC = () => {
                 exit="exit"
               >
                 <p className="text-lg md:text-xl font-medium text-warm-800 leading-relaxed">
-                  "{testimonials[index].text}"
+                  "{current.text}"
                 </p>
                 <p className="mt-6 font-semibold text-warm-700 tracking-wide text-sm uppercase">
-                  {testimonials[index].author}
+                  {current.author}
                 </p>
               </motion.div>
             </AnimatePresence>
