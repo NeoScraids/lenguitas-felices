@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import { motion } from 'framer-motion';
+// ...existing code...
 import SectionTitle from './SectionTitle';
 import GradientBlobs from './GradientBlobs';
 
@@ -35,38 +35,25 @@ const products = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
-
 const Products: React.FC = () => {
   return (
-    <section id="productos" className="relative py-28 scroll-mt-24">
+    <section id="productos" className="relative py-28 overflow-hidden scroll-mt-24">
       <GradientBlobs variant="mid" />
       <div className="absolute inset-0 bg-[url('/patterns/paws.png')] opacity-5 mix-blend-multiply pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-2 sm:px-6">
         <SectionTitle
-          title="Nuestros Productos Especiales"
+          title="Nuestros Productos"
           subtitle="Ingredientes naturales, sabor irresistible y mucho amor en cada mordida."
         />
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-7 mt-10">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
+// ...existing code...
 };
 
 export default Products;

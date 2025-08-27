@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 interface ProductData {
@@ -22,6 +22,11 @@ const hoverMotion = {
 
 const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
   const { image, name, description, price } = product;
+  const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%23fcd9bd" offset="0%"/><stop stop-color="%23feecdc" offset="50%"/><stop stop-color="%23fef7f0" offset="100%"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" font-family="Arial, sans-serif" font-size="22" fill="%239a3412" text-anchor="middle" dy="8">Imagen no disponible</text></svg>`);
+  const [src, setSrc] = useState(image);
+  const handleError = useCallback(() => {
+    if (src !== fallback) setSrc(fallback);
+  }, [src, fallback]);
   const ref = useRef<HTMLDivElement | null>(null);
   return (
     <motion.div
@@ -30,16 +35,18 @@ const ProductCard: React.FC<{ product: ProductData }> = ({ product }) => {
       initial="rest"
       whileHover="hover"
       animate="rest"
-      className="group relative rounded-3xl bg-gradient-to-b from-white/90 to-white/70 backdrop-blur p-4 shadow-lg ring-1 ring-white/60 overflow-hidden">
+  className="group relative rounded-3xl bg-gradient-to-b from-white/90 to-white/70 backdrop-blur p-3 sm:p-4 shadow-lg ring-1 ring-white/60 overflow-hidden">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-warm-500/20 via-transparent to-warm-600/30 pointer-events-none" />
-      <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden mb-4 relative">
+      <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden mb-4 relative max-w-[160px] sm:max-w-full mx-auto shadow-md">
         <img
-          src={image}
+          src={src}
+          onError={handleError}
           alt={name}
-          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
+          decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent opacity-40 group-hover:opacity-30 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent opacity-30 group-hover:opacity-20 transition-opacity" />
       </div>
       <h3 className="text-lg font-semibold text-warm-700 mb-1 tracking-tight">{name}</h3>
       <p className="text-sm text-warm-600 leading-relaxed mb-3">{description}</p>

@@ -7,19 +7,19 @@ const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative flex flex-col items-center justify-center min-h-screen overflow-x-hidden overflow-y-hidden text-center px-4 scroll-mt-24"
+      className="relative flex flex-col items-center justify-center min-h-[92vh] md:min-h-screen overflow-x-hidden overflow-y-hidden text-center px-4 pt-28 md:pt-0 scroll-mt-24"
     >
   <GradientBlobs variant="light" />
       <motion.img
         src={dogDessert}
         alt="Perrito feliz con postre"
-        className="w-56 h-56 md:w-72 md:h-72 object-contain drop-shadow-xl relative z-10 rounded-full border-8 border-white/60 shadow-lg bg-white/40 backdrop-blur"
+        className="w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 object-contain drop-shadow-xl relative z-10 rounded-full border-8 border-white/60 shadow-lg bg-white/40 backdrop-blur"
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
       />
-      <motion.h1
-  className="mt-8 text-4xl md:text-6xl font-extrabold tracking-tight text-warm-800 drop-shadow-sm relative z-10"
+    <motion.h1
+  className="mt-10 mb-3 sm:mt-12 sm:mb-4 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-warm-800 drop-shadow-sm relative z-10 px-2"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
         Lengüitas Felices
       </motion.h1>
       <motion.p
-        className="mt-4 text-xl md:text-2xl font-bold text-beige-700 relative z-10 tracking-wide"
+        className="mt-5 mb-6 sm:mt-6 sm:mb-8 text-lg sm:text-xl md:text-2xl font-bold text-beige-700 relative z-10 tracking-wide px-4 max-w-xl"
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55, duration: 0.8 }}
@@ -36,14 +36,14 @@ const Hero: React.FC = () => {
       </motion.p>
       <motion.a
         href="#productos"
-        className="relative z-10 mt-8 inline-block group"
+        className="relative z-10 mt-8 mb-4 inline-block group"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
       >
-        <span className="px-8 py-3 rounded-full bg-gradient-to-r from-warm-500 to-warm-600 text-white font-semibold text-lg shadow-lg shadow-warm-500/30 ring-2 ring-white/50 backdrop-blur transition-all group-hover:shadow-xl group-hover:shadow-warm-600/40">
+  <span className="px-7 py-3 md:px-8 rounded-full bg-gradient-to-r from-warm-500 to-warm-600 text-white font-semibold text-base sm:text-lg shadow-lg shadow-warm-500/30 ring-2 ring-white/50 backdrop-blur transition-all group-hover:shadow-xl group-hover:shadow-warm-600/40">
           Conoce nuestros productos
         </span>
       </motion.a>

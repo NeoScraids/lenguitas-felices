@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { to: 'inicio', label: 'Inicio' },
@@ -12,6 +12,7 @@ const navItems = [
 
 const Header: React.FC = () => {
   const [darkZone, setDarkZone] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -49,7 +50,7 @@ const Header: React.FC = () => {
       }`}
       style={{ WebkitBackdropFilter: 'blur(28px)', backdropFilter: 'blur(28px)' }}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
         <Link to="inicio" smooth duration={550} offset={-80} className="cursor-pointer select-none">
           <motion.div
             className="relative text-2xl font-extrabold tracking-tight h-[1.2em]"
@@ -90,6 +91,7 @@ const Header: React.FC = () => {
           ))}
         </nav>
       </div>
+  {/* ...no mobile menu... */}
     </header>
   );
 };
