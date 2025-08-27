@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const navItems = [
   { to: 'inicio', label: 'Inicio' },
@@ -12,7 +12,6 @@ const navItems = [
 
 const Header: React.FC = () => {
   const [darkZone, setDarkZone] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
