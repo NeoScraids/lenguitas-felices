@@ -15,28 +15,28 @@ const testimonials: Testimonial[] = [
     text: 'Desde que probó las galletas, Bruno mueve la cola cada vez que abrimos la caja.',
     author: 'Laura',
     dog: 'Bruno',
-    image: '/dogs/dog1.jpg',
+    image: '/dogs/dog1.webp',
   },
   {
     id: 2,
     text: 'Luna es delicada del estómago y estos postres le caen perfecto. ¡Feliz y sana!',
     author: 'Marcos',
     dog: 'Luna',
-    image: '/dogs/dog2.jpg',
+    image: '/dogs/dog2.webp',
   },
   {
     id: 3,
     text: 'Perfectos para celebrar su cumpleaños. Rocky se relamía de alegría.',
     author: 'Ana',
     dog: 'Rocky',
-    image: '/dogs/dog3.jpg',
+    image: '/dogs/dog3.webp',
   },
   {
     id: 4,
     text: 'Ingredientes naturales y se nota. Coco ya reconoce la bolsa y se emociona.',
     author: 'Sofía',
     dog: 'Coco',
-    image: '/dogs/dog4.jpg',
+    image: '/dogs/dog4.webp',
   },
 ];
 
